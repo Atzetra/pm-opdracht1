@@ -28,6 +28,8 @@ int main()
 
     geboorteJaar = geboorteJaar - jaar;
 
+    // Test Shit
+    
     // Controleren of maanden wel geldig zijn
     if (geboorteMaand > 12 || geboorteMaand < 1)
     {
