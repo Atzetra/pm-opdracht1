@@ -14,7 +14,7 @@ int main(){
 
     cin >> geboortejaar >> geboortemaand >> geboortedag;
 
-    // Testregel om uit te vindeb of de variabelen goed binnenkomen
+    // Testregel om uit te vinden of de variabelen goed binnenkomen
     // cout << geboortejaar << " " << geboortemaand << " " << geboortedag;
 
     // Controle voor geldigheid maand
