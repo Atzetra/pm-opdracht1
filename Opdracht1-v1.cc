@@ -6,8 +6,6 @@
 
 using namespace std;
 
-void calcLeeftijd(int& a, int& b, int&c, int& d, int& e);
-
 int main(){
 
     int geboortejaar, geboortemaand, geboortedag;
@@ -25,7 +23,6 @@ int main(){
     int jTotaal = geboortemaand + geboortejaar * 12;
 
     // Ctime om datum uit te vinden
-
     int hdag, hmaand, hjaar;
 
     // Hulpvariabelen voor ctime
@@ -43,7 +40,10 @@ int main(){
 
     int leeftijdJaar, leeftijdMaand, leeftijdCombo;
 
-    calcLeeftijd(hMaandtotaal, jTotaal, leeftijdJaar, leeftijdMaand, leeftijdCombo);
+    // Berekening voor leeftijd
+    leeftijdCombo = hMaandtotaal - jTotaal;
+    leeftijdJaar = leeftijdCombo / 12;
+    leeftijdMaand = leeftijdCombo % 12;
 
     cout << leeftijdJaar << " jaar en " << leeftijdMaand <<" maanden; " << leeftijdCombo << " maanden." << endl;
 
@@ -69,11 +69,3 @@ int main(){
 
     //test
 } //main
-
-void calcLeeftijd(int& a, int& b, int&c, int& d, int& e){
-    
-    e = a - b;
-    c = e / 12;
-    d = e % 12;
-
-}
