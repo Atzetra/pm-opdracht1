@@ -63,11 +63,10 @@ int main(){
         return 1;
     }
 
-    int dagEen = 1;
     
     int maandAdd = 1;
 
-    for (k=1901, k < geboortejaar, k++){
+    for (int k=1901, k < geboortejaar, k++){
         if (k % 4 ==0){
             maandAdd + 366;
         }
@@ -76,9 +75,17 @@ int main(){
         }
     }
 
-    for(i=1, i < (geboortemaand), i++){
+    for(int i=1, i < (geboortemaand), i++){
         switch (1){
-            case 1 ,3:, 5, 7, 8, 10, 12: maandAdd + 31;
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+            maandAdd + 31;  
+            break;
             case 2:
                 if (geboortejaar % 4 == 0){
                     maandAdd + 29;
@@ -86,15 +93,18 @@ int main(){
                 else{
                     maanAdd + 28;
                 }
-            case 4, 6, 9, 11: maandAdd + 31;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                maandAdd + 30;
+                break;
         }
     }
 
     maandAdd + geboortedag;
 
-
-
-    string rekendag;
+    int dagnummer = maandAdd % 7;
 
     switch (dagnummer){
         case 1: rekendag = dagen[0];
