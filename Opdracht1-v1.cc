@@ -6,8 +6,6 @@
 
 using namespace std;
 
-void calcLeeftijd(int& a, int& b, int&c, int& d, int& e);
-
 int main(){
 
     int geboortejaar, geboortemaand, geboortedag;
@@ -25,7 +23,6 @@ int main(){
     int jTotaal = geboortemaand + geboortejaar * 12;
 
     // Ctime om datum uit te vinden
-
     int hdag, hmaand, hjaar;
 
     // Hulpvariabelen voor ctime
@@ -43,7 +40,10 @@ int main(){
 
     int leeftijdJaar, leeftijdMaand, leeftijdCombo;
 
-    calcLeeftijd(hMaandtotaal, jTotaal, leeftijdJaar, leeftijdMaand, leeftijdCombo);
+    // Berekening voor leeftijd
+    leeftijdCombo = hMaandtotaal - jTotaal;
+    leeftijdJaar = leeftijdCombo / 12;
+    leeftijdMaand = leeftijdCombo % 12;
 
     cout << leeftijdJaar << " jaar en " << leeftijdMaand <<" maanden; " << leeftijdCombo << " maanden." << endl;
 
@@ -59,21 +59,84 @@ int main(){
     // Leeftijdscontrole voor toelating
     if (leeftijdJaar < 10 || leeftijdJaar > 100){
 
-        cout << "U valt helaas niet in de categorie om naar de universiteit te gaan." << endl;
+        cout << "U valt helaas niet in de leeftijdscategorie om naar de universiteit te gaan." << endl;
         return 1;
+    }
+
+    
+    int maandAdd = 1;
+
+    for (int k=1901; k < geboortejaar; k++){
+        if (k % 4 ==0){
+           maandAdd += 366;
+        }
+        else{
+            maandAdd += 365;
+        }
+    }
+
+    for(int i=1; i < (geboortemaand); i++){
+        switch (1){
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                maandAdd += 31;  
+            break;
+            case 2:
+                if (geboortejaar % 4 == 0){
+                    maandAdd += 29;
+                }
+                else{
+                    maandAdd += 28;
+                }
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                maandAdd += 30;
+                break;
+        }
+    }
+
+    maandAdd += geboortedag;
+
+    cout << maandAdd;
+
+    int dagnummer = maandAdd % 7;
+
+
+
+    switch (dagnummer){
+        case 0: 
+            cout << "m" << endl;
+            break;
+        case 1: 
+            cout << "di" << endl;
+            break;
+        case 2: 
+            cout << "w" << endl;
+            break;
+        case 3: 
+            cout << "do" << endl;
+            break;
+        case 4: 
+            cout << "v" << endl;
+            break;
+        case 5: 
+            cout << "za" << endl;
+            break;
+        case 6: 
+            cout << "zo" << endl;
+            break;
     }
     
 
+
     return 0;
 
-
-    //test
 } //main
-
-void calcLeeftijd(int& a, int& b, int&c, int& d, int& e){
-    
-    e = a - b;
-    c = e / 12;
-    d = e % 12;
-
-}
