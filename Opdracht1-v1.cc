@@ -66,16 +66,16 @@ int main(){
     
     int maandAdd = 1;
 
-    for (int k=1901, k < geboortejaar, k++){
+    for (int k=1901; k < geboortejaar; k++){
         if (k % 4 ==0){
-            maandAdd + 366;
+           maandAdd += 366;
         }
         else{
-            maandAdd + 365;
+            maandAdd += 365;
         }
     }
 
-    for(int i=1, i < (geboortemaand), i++){
+    for(int i=1; i < (geboortemaand); i++){
         switch (1){
             case 1:
             case 3:
@@ -84,38 +84,58 @@ int main(){
             case 8:
             case 10:
             case 12:
-            maandAdd + 31;  
+                maandAdd += 31;  
             break;
             case 2:
                 if (geboortejaar % 4 == 0){
-                    maandAdd + 29;
+                    maandAdd += 29;
                 }
                 else{
-                    maanAdd + 28;
+                    maandAdd += 28;
                 }
+                break;
             case 4:
             case 6:
             case 9:
             case 11:
-                maandAdd + 30;
+                maandAdd += 30;
                 break;
         }
     }
 
-    maandAdd + geboortedag;
+    maandAdd += geboortedag;
+
+    cout << maandAdd;
 
     int dagnummer = maandAdd % 7;
 
+
+
     switch (dagnummer){
-        case 1: rekendag = dagen[0];
-        case 2: rekendag = dagen[1];
-        case 3: rekendag = dagen[2];
-        case 3: rekendag = dagen[3];
-        case 3: rekendag = dagen[4];
-        case 3: rekendag = dagen[5];
-        case 3: rekendag = dagen[6];
+        case 0: 
+            cout << "m" << endl;
+            break;
+        case 1: 
+            cout << "di" << endl;
+            break;
+        case 2: 
+            cout << "w" << endl;
+            break;
+        case 3: 
+            cout << "do" << endl;
+            break;
+        case 4: 
+            cout << "v" << endl;
+            break;
+        case 5: 
+            cout << "za" << endl;
+            break;
+        case 6: 
+            cout << "zo" << endl;
+            break;
     }
     
+
 
     return 0;
 
