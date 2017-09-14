@@ -59,13 +59,54 @@ int main(){
     // Leeftijdscontrole voor toelating
     if (leeftijdJaar < 10 || leeftijdJaar > 100){
 
-        cout << "U valt helaas niet in de categorie om naar de universiteit te gaan." << endl;
+        cout << "U valt helaas niet in de leeftijdscategorie om naar de universiteit te gaan." << endl;
         return 1;
+    }
+
+    int dagEen = 1;
+    
+    int maandAdd = 1;
+
+    for (k=1901, k < geboortejaar, k++){
+        if (k % 4 ==0){
+            maandAdd + 366;
+        }
+        else{
+            maandAdd + 365;
+        }
+    }
+
+    for(i=1, i < (geboortemaand), i++){
+        switch (1){
+            case 1 ,3:, 5, 7, 8, 10, 12: maandAdd + 31;
+            case 2:
+                if (geboortejaar % 4 == 0){
+                    maandAdd + 29;
+                }
+                else{
+                    maanAdd + 28;
+                }
+            case 4, 6, 9, 11: maandAdd + 31;
+        }
+    }
+
+    maandAdd + geboortedag;
+
+
+
+    string rekendag;
+
+    switch (dagnummer){
+        case 1: rekendag = dagen[0];
+        case 2: rekendag = dagen[1];
+        case 3: rekendag = dagen[2];
+        case 3: rekendag = dagen[3];
+        case 3: rekendag = dagen[4];
+        case 3: rekendag = dagen[5];
+        case 3: rekendag = dagen[6];
     }
     
 
     return 0;
 
-
-    //test
 } //main
