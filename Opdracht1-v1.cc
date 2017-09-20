@@ -105,7 +105,6 @@ int main(){
 
     maandAdd += geboortedag;
 
-    cout << maandAdd;
 
     int dagnummer = maandAdd % 7;
 
@@ -113,25 +112,25 @@ int main(){
 
     switch (dagnummer){
         case 0: 
-            cout << "m" << endl;
-            break;
-        case 1: 
             cout << "di" << endl;
             break;
-        case 2: 
+        case 1: 
             cout << "w" << endl;
             break;
-        case 3: 
+        case 2: 
             cout << "do" << endl;
             break;
-        case 4: 
+        case 3: 
             cout << "v" << endl;
             break;
-        case 5: 
+        case 4: 
             cout << "za" << endl;
             break;
-        case 6: 
+        case 5: 
             cout << "zo" << endl;
+            break;
+        case 6: 
+            cout << "m" << endl;
             break;
     }
     
