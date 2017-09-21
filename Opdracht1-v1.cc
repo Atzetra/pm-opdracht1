@@ -193,8 +193,6 @@ int main(){
         }
 
 
-        int hdag, hmaand, hjaar;
-        
 
     return 0;
 
