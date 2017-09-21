@@ -3,11 +3,13 @@
 
 #include <iostream>
 #include <ctime>
+#include <string>
 
 using namespace std;
 
 int main(){
 
+    string aanhef;
     int geboortejaar, geboortemaand, geboortedag;
 
     cin >> geboortejaar >> geboortemaand >> geboortedag;
@@ -64,19 +66,19 @@ int main(){
     }
 
     
-    int maandAdd = 1;
+    int dagAdd = 0;
 
     for (int k=1901; k < geboortejaar; k++){
         if (k % 4 ==0){
-           maandAdd += 366;
+           dagAdd += 366;
         }
         else{
-            maandAdd += 365;
+            dagAdd += 365;
         }
     }
 
     for(int i=1; i < (geboortemaand); i++){
-        switch (1){
+        switch (i){
             case 1:
             case 3:
             case 5:
@@ -84,58 +86,117 @@ int main(){
             case 8:
             case 10:
             case 12:
-                maandAdd += 31;  
+                dagAdd += 31;  
             break;
-            case 2:
+            case 2:{
                 if (geboortejaar % 4 == 0){
-                    maandAdd += 29;
+                    dagAdd += 29;
                 }
                 else{
-                    maandAdd += 28;
+                    dagAdd += 28;
                 }
+            }
                 break;
             case 4:
             case 6:
             case 9:
             case 11:
-                maandAdd += 30;
+                dagAdd += 30;
                 break;
         }
     }
 
-    maandAdd += geboortedag;
+    // Aangezien de eerste van de maand al 1 is, tellen vanaf 0
+    dagAdd += geboortedag - 1;
 
-    cout << maandAdd;
+    cout << dagAdd;
 
-    int dagnummer = maandAdd % 7;
+    int dagnummer = dagAdd % 7;
+
 
 
 
     switch (dagnummer){
         case 0: 
-            cout << "m" << endl;
-            break;
-        case 1: 
             cout << "di" << endl;
             break;
-        case 2: 
+        case 1: 
             cout << "w" << endl;
             break;
-        case 3: 
+        case 2: 
             cout << "do" << endl;
             break;
-        case 4: 
+        case 3: 
             cout << "v" << endl;
             break;
-        case 5: 
+        case 4: 
             cout << "za" << endl;
             break;
-        case 6: 
+        case 5: 
             cout << "zo" << endl;
             break;
+        case 6: 
+            cout << "m" << endl;
+            break;
     }
-    
 
+    int dagcheck;
+    char letter1;
+    char letter2;
+    cout << "Voer de eerste letter van de dag in:" << endl;
+    cin >> letter1;
+
+
+        if (letter1 == 'd' || letter1 == 'z'){
+            cout << "Voer de tweede letter van de dag in:" << endl;
+            cin >> letter2;
+
+            if (letter1 == 'd' && letter2 == 'i'){
+                dagcheck = 0;
+            }
+            else if (letter1 == 'd' && letter2 == 'o'){
+                dagcheck = 2;
+            }
+            else if (letter1 == 'z' && letter2 == 'a'){
+                dagcheck = 4;
+            }
+            else if (letter1 == 'z' && letter2 == 'o'){
+                dagcheck = 5;
+            }
+            else{
+                return 1;
+            }
+            
+        }
+        else if (letter1 == 'm'){
+            dagcheck = 6;
+        }
+        else if (letter1 == 'w'){
+            dagcheck = 1;
+        }
+        else if (letter1 == 'v'){
+            dagcheck = 3;
+        }
+
+        if (dagcheck == dagnummer){
+            cout << "Zeker aan uw/je moeder gevraagd?" << endl;
+        }
+        else{
+            return 1;
+        }
+
+        if (leeftijdJaar >= 30){
+            aanhef = 'u';
+        }
+        else{
+            aanhef = "je";
+        }
+
+        cout << aanhef << endl;
+
+
+        int hdag, hmaand, hjaar;
+        
 
     return 0;
 
