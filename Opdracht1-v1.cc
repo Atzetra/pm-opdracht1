@@ -192,8 +192,6 @@ int main(){
             aanhef = "je";
         }
 
-        cout << aanhef << endl;
-
 
         int hdag, hmaand, hjaar;
         
