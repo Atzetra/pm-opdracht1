@@ -5,6 +5,7 @@
 #include <ctime>
 #include <string>
 
+
 using namespace std;
 
 int main(){
@@ -12,7 +13,10 @@ int main(){
     string aanhef;
     int geboortejaar, geboortemaand, geboortedag;
 
+
     cin >> geboortejaar >> geboortemaand >> geboortedag;
+
+    srand(geboortejaar / (unsigned)time(0));
 
     // Testregel om uit te vinden of de variabelen goed binnenkomen
     // cout << geboortejaar << " " << geboortemaand << " " << geboortedag;
@@ -143,6 +147,7 @@ int main(){
     int dagcheck;
     char letter1;
     char letter2;
+
     cout << "Voer de eerste letter van de dag in:" << endl;
     cin >> letter1;
 
@@ -192,6 +197,71 @@ int main(){
             aanhef = "je";
         }
 
+        int a,b,c,oplossingen,input;
+        double D;
+
+        a = rand() % 40000;
+        b = (rand() % 40000) - 20000;
+        c = (rand() % 40000) - 20000;
+        
+        D = b^2-4*a*c;
+
+        if (D < 0){
+            oplossingen = 0;
+        }
+        else if (D == 0){
+            oplossingen = 1;
+        }
+        else{
+            oplossingen = 2;
+        }
+
+        cout << "Vul in hoeveel oplossingen " << aanhef << " denkt dat er zijn voor: " << a << "x² + " << b << "x + " << c << " = 0" << endl;
+
+        cin >> input;
+
+        if (input == oplossingen){
+            cout << "\nCorrect! Wij heten " << aanhef << " welkom bij deze betastudie aan Universiteit Leiden!" << endl;
+            return 0;
+        }
+
+        // Begin van het "Alfablok"
+
+        else{
+                cout << "\nDe algebrarische vraag is helaas niet goed ingevuld. Nu krijgt " << aanhef << " een vraag over kunst om te kijken\nof een alfa studie beter bij " << aanhef << " past." << endl;
+
+                if (leeftijdJaar < 30){
+                    cout << "De vraag luidt: Welke van deze schilders is niet van Nederlandse afkomst?" << endl;
+                    cout << "A. Jan van Eyck" << endl;
+                    cout << "B. Rembrandt van Rijn" << endl;
+                    cout << "C. Piet Mondriaan" << endl;
+                    cout << "D. Vincent Van Gogh" << endl;
+                }
+                else{
+                    cout << "De vraag luidt: Hoe heet het literaire werk over de slechte situatie in Nederlands Indië geschreven in de 19e eeuw?" << endl;
+                    cout << "A. Max Havelaar" << endl;
+                    cout << "B. Spinoza" << endl;
+                    cout << "C. De kleine Johannes" << endl;
+                    cout << "D. Ik kom terug" << endl;
+                }
+
+                cout << "\nVul het antwoord in: ";
+
+                char lantwoord;
+                cin >> lantwoord;
+
+                switch(lantwoord){
+                    case 'a': 
+                    case 'A':
+                        cout << "Correct: Welkom bij de alfa studies aan de Universiteit Leiden!" << endl;
+                        break;
+                    default:
+                        cout << "Helaas, " << aanhef << " bent niet gekwalificeerd voor een studie aan de Universiteit Leiden." << endl;
+                        cout << "\nDit programma is nu ten einde gekomen." << endl;
+                        return 1;
+                        break;
+                }
+        }
 
 
     return 0;
