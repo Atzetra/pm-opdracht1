@@ -1,6 +1,10 @@
-// Enzo Sastrokarijo (s1993895) & Daniël Zee
+// Enzo Sastrokarijo (s1993895) & Daniël Zee(s2063131)
 // Programmeermethoden 2017-2018
 // g++ compiler zonder optimalisation flags (Fedora 26 (Linux))
+
+// Dit programma test of een gebruiker geschikt is voor een studie
+// aan Universiteit Leiden. Er zit een test in voor een beta en een alfa
+// studie.
 
 #include <iostream>
 #include <ctime>
@@ -10,6 +14,8 @@ using namespace std;
 
 int main()
 {
+    // Initialiseren rand met de tijd als seed
+    srand(time(NULL));
 
     // Infoblok
     cout << "Enzo Sastrokarijo (s1993895) & Daniël Zee (" << endl;
@@ -18,7 +24,7 @@ int main()
 
     cout << "---" << endl;
 
-    //Welkomsscherm
+    //Welkomstscherm
     cout << "Welkom bij de toelatingstest van Universiteit Leiden." << endl;
     cout << "Aan de hand van dit programma zoeken wij uit of een studie aan deze\nuniversiteit wel een geschikte keuze is.\n"
          << endl;
@@ -31,6 +37,16 @@ int main()
     cin >> geboortejaar;
     cout << "Voer uw geboortemaand in: ";
     cin >> geboortemaand;
+
+    // Controle voor geldigheid maand
+    if (geboortemaand > 12 || geboortemaand < 1)
+    {
+        cout << "\nDat is geen geldige maand." << endl;
+        cout << "Dit programma stopt nu." << endl;
+        return 1;
+    }
+
+    // Continue invoer
     cout << "Voer uw geboortedag in: ";
     cin >> geboortedag;
 
@@ -109,17 +125,7 @@ int main()
     }
     }
 
-    srand(geboortejaar / (unsigned)time(0));
-
-    // Testregel om uit te vinden of de variabelen goed binnenkomen
-    // cout << geboortejaar << " " << geboortemaand << " " << geboortedag;
-
-    // Controle voor geldigheid maand
-    if (geboortemaand > 12 || geboortemaand < 1)
-    {
-        return 1;
-    }
-
+    // Berekening aantal maanden vanaf geboorte
     int jTotaal = geboortemaand + geboortejaar * 12;
 
     // Ctime om datum uit te vinden
@@ -145,17 +151,18 @@ int main()
     leeftijdJaar = leeftijdCombo / 12;
     leeftijdMaand = leeftijdCombo % 12;
 
-    cout << leeftijdJaar << " jaar en " << leeftijdMaand << " maanden; " << leeftijdCombo << " maanden." << endl;
+    cout << "\n" << leeftijdJaar << " jaar en " << leeftijdMaand << " maanden; " << leeftijdCombo << " maanden.\n" << endl;
 
+    // Berichtgeving bij verjaar- maanddag
     if (hdag == geboortedag && hmaand == geboortemaand)
     {
 
-        cout << "Fijne verjaardag!" << endl;
+        cout << "Fijne verjaardag!\n" << endl;
     }
     else if (hdag == geboortedag)
     {
 
-        cout << "Fijne vermaanddag!" << endl;
+        cout << "Fijne vermaanddag!\n" << endl;
     }
 
     // Leeftijdscontrole voor toelating
@@ -166,17 +173,17 @@ int main()
         return 1;
     }
 
-    int dagAdd = 0;
+    int dagCalc = 0;
 
     for (int k = 1901; k < geboortejaar; k++)
     {
         if (k % 4 == 0)
         {
-            dagAdd += 366;
+            dagCalc += 366;
         }
         else
         {
-            dagAdd += 365;
+            dagCalc += 365;
         }
     }
 
@@ -191,17 +198,17 @@ int main()
         case 8:
         case 10:
         case 12:
-            dagAdd += 31;
+            dagCalc += 31;
             break;
         case 2:
         {
             if (geboortejaar % 4 == 0)
             {
-                dagAdd += 29;
+                dagCalc += 29;
             }
             else
             {
-                dagAdd += 28;
+                dagCalc += 28;
             }
         }
         break;
@@ -209,54 +216,32 @@ int main()
         case 6:
         case 9:
         case 11:
-            dagAdd += 30;
+            dagCalc += 30;
             break;
         }
     }
 
     // Aangezien de eerste van de maand al 1 is, tellen vanaf 0
-    dagAdd += geboortedag - 1;
+    dagCalc += geboortedag - 1;
 
-    cout << dagAdd;
-
-    int dagnummer = dagAdd % 7;
-
-    switch (dagnummer)
-    {
-    case 0:
-        cout << "di" << endl;
-        break;
-    case 1:
-        cout << "w" << endl;
-        break;
-    case 2:
-        cout << "do" << endl;
-        break;
-    case 3:
-        cout << "v" << endl;
-        break;
-    case 4:
-        cout << "za" << endl;
-        break;
-    case 5:
-        cout << "zo" << endl;
-        break;
-    case 6:
-        cout << "m" << endl;
-        break;
-    }
+    // Met modulus dag van week uitvinden
+    int dagnummer = dagCalc % 7;
 
     int dagcheck;
     char letter1;
     char letter2;
 
-    cout << "Voer de eerste letter van de dag in:" << endl;
+    // Invoer voor dagcontrolle
+    cout << "Voer de eerste letter van uw geboortedag in (bijvoorbeeld woensdag = w): ";
     cin >> letter1;
+    cout << endl;
 
+    // Extra letter voor tweeletterige dagen
     if (letter1 == 'd' || letter1 == 'z')
     {
-        cout << "Voer de tweede letter van de dag in:" << endl;
+        cout << "Voer de tweede letter van de dag in:";
         cin >> letter2;
+        cout << endl;
 
         if (letter1 == 'd' && letter2 == 'i')
         {
@@ -292,15 +277,7 @@ int main()
         dagcheck = 3;
     }
 
-    if (dagcheck == dagnummer)
-    {
-        cout << "Zeker aan uw/je moeder gevraagd?" << endl;
-    }
-    else
-    {
-        return 1;
-    }
-
+    // Aanhef in string voor betere UX
     if (leeftijdJaar >= 30)
     {
         aanhef = 'u';
@@ -310,15 +287,29 @@ int main()
         aanhef = "je";
     }
 
+    // Controle dagtest
+    if (dagcheck == dagnummer)
+    {
+        cout << "Correct, " << aanhef << " wordt nu naar de betastudie test gestuurd.\n"
+             << endl;
+    }
+    else
+    {
+        return 1;
+    }
+
+    // Variabelen abc-test
     int a, b, c, oplossingen, input;
     double D;
 
+    // rand() voor abc formule
     a = rand() % 40000;
     b = (rand() % 40000) - 20000;
     c = (rand() % 40000) - 20000;
 
     D = b ^ 2 - 4 * a * c;
 
+    // Test voor het aantal oplossingen
     if (D < 0)
     {
         oplossingen = 0;
@@ -332,7 +323,8 @@ int main()
         oplossingen = 2;
     }
 
-    cout << "Vul in hoeveel oplossingen " << aanhef << " denkt dat er zijn voor: " << a << "x² + " << b << "x + " << c << " = 0" << endl;
+    cout << "Vul in hoeveel oplossingen " << aanhef << " denkt dat er zijn voor:\n"
+         << a << "x² + " << b << "x + " << c << " = 0" << endl;
 
     cin >> input;
 
@@ -344,13 +336,14 @@ int main()
 
     // Begin van het "Alfablok"
 
+    // Multiple choice vraag voor alfastudies
     else
     {
-        cout << "\nDe algebrarische vraag is helaas niet goed ingevuld. Nu krijgt " << aanhef << " een vraag over kunst om te kijken\nof een alfa studie beter bij " << aanhef << " past." << endl;
+        cout << "\nDe algebrarische vraag is helaas niet goed ingevuld.\n\nNu wordt aan " << aanhef << " een vraag over kunst gesteld om te kijken\nof een alfa studie beter bij " << aanhef << " past." << endl;
 
         if (leeftijdJaar < 30)
         {
-            cout << "De vraag luidt: Welke van deze schilders is niet van Nederlandse afkomst?" << endl;
+            cout << "\nDe vraag luidt: Welke van deze schilders is niet van Nederlandse afkomst?" << endl;
             cout << "A. Jan van Eyck" << endl;
             cout << "B. Rembrandt van Rijn" << endl;
             cout << "C. Piet Mondriaan" << endl;
@@ -358,7 +351,7 @@ int main()
         }
         else
         {
-            cout << "De vraag luidt: Hoe heet het literaire werk over de slechte situatie in Nederlands Indië geschreven in de 19e eeuw?" << endl;
+            cout << "\nDe vraag luidt: Hoe heet het literaire werk over de slechte situatie in Nederlands Indië geschreven in de 19e eeuw?" << endl;
             cout << "A. Max Havelaar" << endl;
             cout << "B. Spinoza" << endl;
             cout << "C. De kleine Johannes" << endl;
@@ -374,10 +367,11 @@ int main()
         {
         case 'a':
         case 'A':
-            cout << "Correct: Welkom bij de alfa studies aan de Universiteit Leiden!" << endl;
+            cout << "Correct: Welkom bij de alfastudies aan de Universiteit Leiden!" << endl;
             break;
         default:
-            cout << "Helaas, " << aanhef << " bent niet gekwalificeerd voor een studie aan de Universiteit Leiden." << endl;
+            cout << "\nHelaas, " << aanhef << " bent niet gekwalificeerd voor een studie aan de Universiteit Leiden." << endl;
+            cout << "Het antwoord was: A." << endl;
             cout << "\nDit programma is nu ten einde gekomen." << endl;
             return 1;
             break;
