@@ -151,18 +151,22 @@ int main()
     leeftijdJaar = leeftijdCombo / 12;
     leeftijdMaand = leeftijdCombo % 12;
 
-    cout << "\n" << leeftijdJaar << " jaar en " << leeftijdMaand << " maanden; " << leeftijdCombo << " maanden.\n" << endl;
+    cout << "\n"
+         << leeftijdJaar << " jaar en " << leeftijdMaand << " maanden; " << leeftijdCombo << " maanden.\n"
+         << endl;
 
     // Berichtgeving bij verjaar- maanddag
     if (hdag == geboortedag && hmaand == geboortemaand)
     {
 
-        cout << "Fijne verjaardag!\n" << endl;
+        cout << "Fijne verjaardag!\n"
+             << endl;
     }
     else if (hdag == geboortedag)
     {
 
-        cout << "Fijne vermaanddag!\n" << endl;
+        cout << "Fijne vermaanddag!\n"
+             << endl;
     }
 
     // Leeftijdscontrole voor toelating
