@@ -20,9 +20,9 @@ int main()
     // Infoblok
     cout << "Enzo Sastrokarijo (s1993895) & Daniël Zee (" << endl;
     cout << "Programmeermethoden 2017-2018" << endl;
-    cout << "Opgave 1" << endl;
+    cout << "Opgave 1\n" << endl;
 
-    cout << "---" << endl;
+    cout << "---\n" << endl;
 
     //Welkomstscherm
     cout << "Welkom bij de toelatingstest van Universiteit Leiden." << endl;
